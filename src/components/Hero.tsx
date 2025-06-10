@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { TrendingUp, BarChart3, ExternalLink } from 'lucide-react';
+import logoOnly from '../assets/redacted-logoonly.png';
+
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -25,7 +27,10 @@ const Hero = () => {
             <span className="bg-gradient-to-r from-red-400 via-red-500 to-red-600 bg-clip-text text-transparent">
               RedactedFrog
             </span>
-            <span className="block text-4xl sm:text-5xl lg:text-6xl mt-2">🐸</span>
+           <div className="mt-4 flex justify-center">
+            <img src={logoOnly} alt="Redacted Logo" className="h-24 sm:h-28 lg:h-32 xl:h-40 object-contain" />
+        </div>
+
           </h1>
           
           <p className="text-xl sm:text-2xl lg:text-3xl text-gray-300 mb-8 max-w-4xl mx-auto font-light">
