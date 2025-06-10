@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { ClipboardCopy, Check } from 'lucide-react';
+import { ExternalLink, ClipboardCopy } from 'lucide-react';
 import logoOnly from '../assets/redacted-logoonly.png';
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [copied, setCopied] = useState(false);
-
   const ca = '0x6a3ee7dbf407017e58d48b2cc9b55b180f0a3ee7';
 
   useEffect(() => {
@@ -14,21 +12,20 @@ const Hero = () => {
 
   const handleCopy = () => {
     navigator.clipboard.writeText(ca);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1500);
   };
 
   return (
     <section id="home" className="min-h-screen bg-gradient-to-br from-black via-red-950 to-black relative overflow-hidden flex items-center">
-      {/* Animated Background Elements */}
+      {/* Background Layers */}
       <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/1089438/pexels-photo-1089438.jpeg')] bg-cover bg-center opacity-10"></div>
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/60"></div>
-      
-      {/* Floating Elements */}
+
+      {/* Floating Orbs */}
       <div className="absolute top-20 left-10 w-20 h-20 bg-red-500/20 rounded-full blur-xl animate-pulse"></div>
       <div className="absolute bottom-32 right-20 w-32 h-32 bg-red-600/10 rounded-full blur-2xl animate-pulse delay-1000"></div>
       <div className="absolute top-1/2 right-10 w-16 h-16 bg-red-400/30 rounded-full blur-lg animate-bounce delay-500"></div>
 
+      {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h1 className="text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-bebas text-white mb-6 tracking-wider">
@@ -48,26 +45,28 @@ const Hero = () => {
             Join the revolution. Embrace the chaos. Become part of the legend that's too dangerous to speak about.
           </p>
 
-          {/* CA DISPLAY */}
-          <div className="flex justify-center">
-            <div className="bg-black/40 backdrop-blur-sm border border-red-500/30 px-6 py-4 rounded-full font-mono text-sm text-red-400 flex items-center space-x-3 hover:bg-black/60 transition-all duration-300">
-              <span className="truncate max-w-[240px] sm:max-w-none">
-                {ca}
-              </span>
-              <button
-                onClick={handleCopy}
-                className="text-white hover:text-red-400 transition-colors"
-                title="Copy to clipboard"
-              >
-                {copied ? (
-                  <Check className="w-4 h-4 text-green-400" />
-                ) : (
-                  <ClipboardCopy className="w-4 h-4" />
-                )}
-              </button>
-            </div>
-          </div>
+          {/* Buttons */}
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+            {/* View CA Button */}
+            <button
+              onClick={handleCopy}
+              className="group border-2 border-red-500 text-red-400 hover:bg-red-500 hover:text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-200 hover:scale-105 flex items-center space-x-2"
+            >
+              <ClipboardCopy className="w-5 h-5" />
+              <span>Copy CA</span>
+            </button>
 
+            {/* Buy Now Button */}
+            <a
+              href="https://arena.trade/token/0x6a3ee7dbf407017e58d48b2cc9b55b180f0a3ee7"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-200 hover:scale-105 flex items-center space-x-2"
+            >
+              <span>Buy Now</span>
+              <ExternalLink className="w-4 h-4" />
+            </a>
+          </div>
         </div>
       </div>
     </section>
