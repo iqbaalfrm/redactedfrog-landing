@@ -27,13 +27,10 @@ const Community = () => {
             the rules of meme coins. Your voice matters in the RedactedFrog revolution.
           </p>
           
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          {/* CTA Button */}
+          <div className="flex justify-center">
             <button className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-200 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/30">
               Buy $RFROG Now
-            </button>
-            <button className="border-2 border-red-500 text-red-400 hover:bg-red-500 hover:text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-200 hover:scale-105">
-              Join Telegram
             </button>
           </div>
         </div>
