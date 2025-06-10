@@ -1,32 +1,10 @@
 import React from 'react';
-import { Shield, Zap, Users, Eye } from 'lucide-react';
+
 import logo from '../assets/redacted-logo.png';
 
 
 const About = () => {
-  const features = [
-    {
-      icon: Shield,
-      title: "Uncensorable",
-      description: "Built on the blockchain, beyond the reach of traditional censorship"
-    },
-    {
-      icon: Zap,
-      title: "Lightning Fast",
-      description: "Ethereum-based smart contract with optimized gas efficiency"
-    },
-    {
-      icon: Users,
-      title: "Community Driven",
-      description: "No central authority, governed entirely by the community"
-    },
-    {
-      icon: Eye,
-      title: "Transparent",
-      description: "All transactions visible on-chain, nothing to hide"
-    }
-  ];
-
+ 
   return (
     <section id="about" className="py-20 bg-gradient-to-b from-black to-red-950">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -69,19 +47,6 @@ const About = () => {
 
           </div>
         </div>
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {features.map((feature, index) => (
-            <div 
-              key={index}
-              className="bg-black/40 backdrop-blur-sm border border-red-500/30 rounded-2xl p-6 hover:bg-black/60 transition-all duration-300 hover:scale-105 group"
-            >
-              <feature.icon className="w-12 h-12 text-red-400 mb-4 group-hover:scale-110 transition-transform duration-200" />
-              <h3 className="text-xl font-bebas text-white mb-2">{feature.title}</h3>
-              <p className="text-gray-400 text-sm">{feature.description}</p>
-            </div>
-          ))}
         </div>
       </div>
     </section>
