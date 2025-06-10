@@ -1,6 +1,6 @@
 import React from 'react';
 import { Shield, Zap, Users, Eye } from 'lucide-react';
-import logo from './assets/redacted-logo.png';
+import logo from '../assets/redacted-logo.png';
 
 
 const About = () => {
