@@ -1,122 +1,166 @@
-import React from 'react';
-import { Rocket, Target, Crown, Globe } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { CheckCircle, Circle, Rocket, Target, Trophy, Zap } from 'lucide-react';
 
-const Roadmap: React.FC = () => {
-  const phases = [
+const Roadmap = () => {
+  const [visibleItems, setVisibleItems] = useState<number[]>([]);
+
+  const roadmapItems = [
     {
-      phase: 'PHASE 1',
-      title: 'Launch & Liquidity Lock',
-      description: 'Token deployment, initial liquidity provision, and smart contract verification.',
-      icon: Rocket,
-      status: 'completed'
+      phase: "Phase 1",
+      title: "The Awakening",
+      status: "completed",
+      icon: CheckCircle,
+      items: [
+        "🐸 RedactedFrog contract deployed",
+        "💧 Liquidity pool created",
+        "🔥 LP tokens burned forever",
+        "🚀 Fair launch completed"
+      ]
     },
     {
-      phase: 'PHASE 2',
-      title: 'Marketing Blitz & CEX Listing',
-      description: 'Aggressive marketing campaign and major centralized exchange listings.',
+      phase: "Phase 2",
+      title: "Community Building",
+      status: "in-progress",
       icon: Target,
-      status: 'active'
+      items: [
+        "📱 Telegram & Twitter growth",
+        "🎨 Meme creation contests",
+        "🤝 Community partnerships",
+        "📈 First exchange listings"
+      ]
     },
     {
-      phase: 'PHASE 3',
-      title: 'NFT Collection & Staking',
-      description: 'Launch exclusive Redacted Frog NFTs and staking rewards program.',
-      icon: Crown,
-      status: 'upcoming'
+      phase: "Phase 3",
+      title: "The Revolution",
+      status: "upcoming",
+      icon: Rocket,
+      items: [
+        "🏪 RedactedFrog merchandise",
+        "🎮 Community gaming events",
+        "💰 Staking rewards program",
+        "🌍 Global marketing campaign"
+      ]
     },
     {
-      phase: 'PHASE 4',
-      title: 'DAO Governance & Expansion',
-      description: 'Full decentralized governance and ecosystem expansion initiatives.',
-      icon: Globe,
-      status: 'upcoming'
+      phase: "Phase 4",
+      title: "Legendary Status",
+      status: "future",
+      icon: Trophy,
+      items: [
+        "🏛️ DAO governance launch",
+        "🔗 Cross-chain expansion",
+        "📚 RedactedFrog university",
+        "🌟 Meme coin hall of fame"
+      ]
     }
   ];
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = parseInt(entry.target.getAttribute('data-index') || '0');
+            setVisibleItems(prev => [...prev, index]);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    const elements = document.querySelectorAll('.roadmap-item');
+    elements.forEach(el => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case 'completed': return 'from-green-400 to-green-600';
+      case 'in-progress': return 'from-yellow-400 to-orange-500';
+      case 'upcoming': return 'from-red-400 to-red-600';
+      case 'future': return 'from-purple-400 to-purple-600';
+      default: return 'from-gray-400 to-gray-600';
+    }
+  };
+
   return (
-    <section className="py-20 px-4 relative">
-      <div className="absolute inset-0 cyber-grid opacity-15"></div>
-      
-      <div className="max-w-6xl mx-auto relative z-10">
+    <section id="roadmap" className="py-20 bg-gradient-to-b from-black to-red-950">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-cyber font-bold mb-6 text-glow-red">
-            MISSION <span className="text-red-500">ROADMAP</span>
+          <h2 className="text-5xl sm:text-6xl font-bebas text-white mb-6">
+            The <span className="text-red-400">Roadmap</span>
           </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            Our strategic plan to dominate the meme coin universe
+          <div className="w-24 h-1 bg-gradient-to-r from-red-500 to-red-600 mx-auto mb-8"></div>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            Our journey from shadow to legend. Every milestone brings us closer to immortality.
           </p>
         </div>
-        
+
         <div className="relative">
           {/* Timeline Line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-red-500 via-red-400 to-red-300 glow-red hidden lg:block"></div>
-          
-          <div className="space-y-16">
-            {phases.map((phase, index) => {
-              const Icon = phase.icon;
-              const isEven = index % 2 === 0;
-              
-              return (
-                <div key={index} className={`relative flex items-center ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}>
-                  {/* Timeline Node */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2 w-16 h-16 rounded-full bg-red-500 glow-red-intense flex items-center justify-center z-10 hidden lg:flex">
-                    <div className="w-8 h-6 bg-green-400 rounded-full relative">
-                      <div className="absolute top-0 left-1 w-1.5 h-1.5 bg-red-500 rounded-full pulse-red"></div>
-                      <div className="absolute top-0 right-1 w-1.5 h-1.5 bg-red-500 rounded-full pulse-red"></div>
-                    </div>
-                  </div>
-                  
-                  {/* Content Card */}
-                  <div className={`w-full lg:w-5/12 ${isEven ? 'lg:pr-16' : 'lg:pl-16'}`}>
-                    <div className={`cyber-card group hover:scale-105 transition-all duration-300 ${
-                      phase.status === 'completed' ? 'border-green-500/50 bg-green-500/5' :
-                      phase.status === 'active' ? 'border-red-500/50 bg-red-500/5' :
-                      'border-gray-500/30 bg-gray-500/5'
-                    }`}>
-                      <div className="flex items-start gap-4">
-                        <div className={`w-16 h-16 rounded-xl flex items-center justify-center ${
-                          phase.status === 'completed' ? 'bg-green-500/20' :
-                          phase.status === 'active' ? 'bg-red-500/20' :
-                          'bg-gray-500/20'
-                        }`}>
-                          <Icon className={`w-8 h-8 ${
-                            phase.status === 'completed' ? 'text-green-400' :
-                            phase.status === 'active' ? 'text-red-400' :
-                            'text-gray-400'
-                          }`} />
+          <div className="absolute left-1/2 transform -translate-x-0.5 h-full w-1 bg-gradient-to-b from-red-500 to-red-600 hidden lg:block"></div>
+
+          <div className="space-y-12">
+            {roadmapItems.map((item, index) => (
+              <div 
+                key={index}
+                data-index={index}
+                className={`roadmap-item relative transition-all duration-700 ${
+                  visibleItems.includes(index) 
+                    ? 'opacity-100 translate-y-0' 
+                    : 'opacity-0 translate-y-10'
+                }`}
+              >
+                <div className={`lg:flex items-center ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}>
+                  {/* Content */}
+                  <div className={`lg:w-5/12 ${index % 2 === 0 ? 'lg:pr-8' : 'lg:pl-8'}`}>
+                    <div className="bg-black/40 backdrop-blur-sm border border-red-500/30 rounded-2xl p-6 hover:bg-black/60 transition-all duration-300 hover:scale-105">
+                      <div className="flex items-center space-x-3 mb-4">
+                        <div className={`p-2 rounded-full bg-gradient-to-r ${getStatusColor(item.status)}`}>
+                          <item.icon className="w-6 h-6 text-white" />
                         </div>
-                        <div className="flex-1">
-                          <div className="flex items-center gap-3 mb-2">
-                            <span className={`text-sm font-cyber font-bold px-3 py-1 rounded-full ${
-                              phase.status === 'completed' ? 'bg-green-500/20 text-green-400' :
-                              phase.status === 'active' ? 'bg-red-500/20 text-red-400' :
-                              'bg-gray-500/20 text-gray-400'
-                            }`}>
-                              {phase.phase}
-                            </span>
-                            {phase.status === 'completed' && (
-                              <span className="text-green-400 text-sm">✓ COMPLETE</span>
-                            )}
-                            {phase.status === 'active' && (
-                              <span className="text-red-400 text-sm pulse-red">● ACTIVE</span>
-                            )}
-                          </div>
-                          <h3 className="text-2xl font-cyber font-bold mb-3 text-white">
-                            {phase.title}
-                          </h3>
-                          <p className="text-gray-400 leading-relaxed">
-                            {phase.description}
-                          </p>
+                        <div>
+                          <div className="text-sm text-red-400 font-semibold">{item.phase}</div>
+                          <div className="text-xl font-bebas text-white">{item.title}</div>
                         </div>
                       </div>
+                      
+                      <ul className="space-y-2">
+                        {item.items.map((listItem, itemIndex) => (
+                          <li key={itemIndex} className="text-gray-300 flex items-center space-x-2">
+                            <span className="text-xs">•</span>
+                            <span>{listItem}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
-                  
-                  {/* Spacer for timeline */}
-                  <div className="hidden lg:block lg:w-2/12"></div>
+
+                  {/* Timeline Node */}
+                  <div className="hidden lg:flex items-center justify-center w-2/12">
+                    <div className={`w-4 h-4 rounded-full bg-gradient-to-r ${getStatusColor(item.status)} border-4 border-black shadow-lg`}></div>
+                  </div>
+
+                  {/* Spacer */}
+                  <div className="hidden lg:block w-5/12"></div>
                 </div>
-              );
-            })}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Call to Action */}
+        <div className="text-center mt-16">
+          <div className="bg-gradient-to-r from-red-600/20 to-red-800/20 border border-red-500/30 rounded-3xl p-8 max-w-2xl mx-auto">
+            <Zap className="w-12 h-12 text-red-400 mx-auto mb-4" />
+            <h3 className="text-2xl font-bebas text-white mb-4">Join the Revolution</h3>
+            <p className="text-gray-300 mb-6">
+              Be part of the community that's writing the next chapter of meme coin history.
+            </p>
+            <button className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white px-8 py-3 rounded-full font-bold transition-all duration-200 hover:scale-105">
+              Get $RFROG Now
+            </button>
           </div>
         </div>
       </div>

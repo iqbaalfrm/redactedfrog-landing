@@ -1,153 +1,139 @@
-import React from 'react';
-import { PieChart, TrendingUp, Lock, Users } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { PieChart, Lock, Flame, Users, Rocket } from 'lucide-react';
 
-const Tokenomics: React.FC = () => {
+const Tokenomics = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    const element = document.getElementById('tokenomics');
+    if (element) observer.observe(element);
+
+    return () => observer.disconnect();
+  }, []);
+
   const tokenomicsData = [
-    { label: 'Liquidity', percentage: 40, color: 'bg-red-500', icon: Lock },
-    { label: 'Marketing', percentage: 20, color: 'bg-red-400', icon: TrendingUp },
-    { label: 'Development', percentage: 20, color: 'bg-red-300', icon: PieChart },
-    { label: 'Team', percentage: 10, color: 'bg-red-200', icon: Users },
-    { label: 'Airdrop', percentage: 10, color: 'bg-red-100', icon: Users },
+    {
+      icon: Users,
+      title: "Community",
+      percentage: 85,
+      color: "from-red-400 to-red-600",
+      description: "Distributed to the community"
+    },
+    {
+      icon: Rocket,
+      title: "Marketing",
+      percentage: 10,
+      color: "from-red-500 to-red-700",
+      description: "Community marketing initiatives"
+    },
+    {
+      icon: Flame,
+      title: "Burned",
+      percentage: 5,
+      color: "from-red-600 to-red-800",
+      description: "Permanently removed from supply"
+    }
+  ];
+
+  const stats = [
+    { label: "Total Supply", value: "1,000,000,000", suffix: "RFROG" },
+    { label: "Circulating", value: "850,000,000", suffix: "RFROG" },
+    { label: "Buy Tax", value: "0", suffix: "%" },
+    { label: "Sell Tax", value: "0", suffix: "%" }
   ];
 
   return (
-    <section className="py-20 px-4 relative">
-      <div className="absolute inset-0 cyber-grid opacity-10"></div>
-      
-      <div className="max-w-6xl mx-auto relative z-10">
+    <section id="tokenomics" className="py-20 bg-gradient-to-b from-red-950 to-black">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-cyber font-bold mb-6 text-glow-red">
-            TOKEN<span className="text-red-500">OMICS</span>
+          <h2 className="text-5xl sm:text-6xl font-bebas text-white mb-6">
+            <span className="text-red-400">Token</span>omics
           </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            Transparent distribution designed for long-term growth and community empowerment
+          <div className="w-24 h-1 bg-gradient-to-r from-red-500 to-red-600 mx-auto mb-8"></div>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            Fair launch, community-owned, and built for the long term. No hidden allocations, no team dumps.
           </p>
         </div>
-        
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Chart Section */}
-          <div className="relative">
-            <div className="cyber-card p-8">
-              {/* Simplified Donut Chart */}
-              <div className="relative w-80 h-80 mx-auto mb-8">
-                <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="40"
-                    stroke="rgba(239, 68, 68, 0.1)"
-                    strokeWidth="10"
-                    fill="none"
-                  />
-                  
-                  {/* Liquidity - 40% */}
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="40"
-                    stroke="#ef4444"
-                    strokeWidth="10"
-                    fill="none"
-                    strokeDasharray="100 151"
-                    strokeDashoffset="0"
-                    className="glow-red"
-                  />
-                  
-                  {/* Marketing - 20% */}
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="40"
-                    stroke="#f87171"
-                    strokeWidth="8"
-                    fill="none"
-                    strokeDasharray="50 201"
-                    strokeDashoffset="-100"
-                  />
-                  
-                  {/* Development - 20% */}
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="40"
-                    stroke="#fca5a5"
-                    strokeWidth="6"
-                    fill="none"
-                    strokeDasharray="50 201"
-                    strokeDashoffset="-150"
-                  />
-                  
-                  {/* Team - 10% */}
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="40"
-                    stroke="#fecaca"
-                    strokeWidth="4"
-                    fill="none"
-                    strokeDasharray="25 226"
-                    strokeDashoffset="-200"
-                  />
-                  
-                  {/* Airdrop - 10% */}
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="40"
-                    stroke="#fee2e2"
-                    strokeWidth="2"
-                    fill="none"
-                    strokeDasharray="25 226"
-                    strokeDashoffset="-225"
-                  />
-                </svg>
-                
-                {/* Center Logo */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-20 h-20 rounded-full bg-red-500 glow-red-intense flex items-center justify-center">
-                    <div className="w-12 h-10 bg-green-400 rounded-full relative">
-                      <div className="absolute top-1 left-1 w-2 h-2 bg-red-500 rounded-full pulse-red"></div>
-                      <div className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full pulse-red"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          {/* Details Section */}
+
+        <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+          {/* Tokenomics Breakdown */}
           <div className="space-y-6">
-            {tokenomicsData.map((item, index) => {
-              const Icon = item.icon;
-              return (
-                <div key={index} className="cyber-card group hover:scale-105 transition-all duration-300">
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-lg bg-red-500/20 flex items-center justify-center group-hover:bg-red-500/30 transition-colors duration-300">
-                      <Icon className="w-6 h-6 text-red-400" />
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex justify-between items-center mb-2">
-                        <h3 className="font-cyber font-semibold text-lg">{item.label}</h3>
-                        <span className="text-2xl font-bold text-red-400">{item.percentage}%</span>
-                      </div>
-                      <div className="w-full bg-gray-800 rounded-full h-2">
-                        <div 
-                          className={`h-2 rounded-full ${item.color} glow-red transition-all duration-1000`}
-                          style={{ width: `${item.percentage}%` }}
-                        ></div>
-                      </div>
+            {tokenomicsData.map((item, index) => (
+              <div 
+                key={index}
+                className={`bg-black/40 backdrop-blur-sm border border-red-500/30 rounded-2xl p-6 transition-all duration-500 hover:scale-105 ${
+                  isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
+                }`}
+                style={{ transitionDelay: `${index * 200}ms` }}
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center space-x-3">
+                    <item.icon className="w-8 h-8 text-red-400" />
+                    <div>
+                      <h3 className="text-xl font-bebas text-white">{item.title}</h3>
+                      <p className="text-sm text-gray-400">{item.description}</p>
                     </div>
                   </div>
+                  <div className="text-2xl font-bebas text-red-400">{item.percentage}%</div>
                 </div>
-              );
-            })}
-            
-            <div className="cyber-card bg-red-500/5 border-red-500/50">
-              <div className="text-center">
-                <h3 className="font-cyber font-bold text-xl mb-2 text-red-400">TOTAL SUPPLY</h3>
-                <p className="text-3xl font-black text-white">1,000,000,000</p>
-                <p className="text-sm text-gray-400 mt-1">REDACTED TOKENS</p>
+                <div className="w-full bg-gray-800 rounded-full h-3">
+                  <div 
+                    className={`h-3 bg-gradient-to-r ${item.color} rounded-full transition-all duration-1000 ease-out`}
+                    style={{ 
+                      width: isVisible ? `${item.percentage}%` : '0%'
+                    }}
+                  ></div>
+                </div>
               </div>
+            ))}
+          </div>
+
+          {/* Stats Grid */}
+          <div className="grid grid-cols-2 gap-6">
+            {stats.map((stat, index) => (
+              <div 
+                key={index}
+                className={`bg-gradient-to-br from-red-600/20 to-red-800/20 border border-red-500/30 rounded-2xl p-6 text-center hover:scale-105 transition-all duration-300 ${
+                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                }`}
+                style={{ transitionDelay: `${index * 150}ms` }}
+              >
+                <div className="text-2xl sm:text-3xl font-bebas text-red-400 mb-2">
+                  {stat.value}
+                </div>
+                <div className="text-xs text-red-300 mb-1">{stat.suffix}</div>
+                <div className="text-sm text-gray-400">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Key Features */}
+        <div className="bg-black/40 backdrop-blur-sm border border-red-500/30 rounded-3xl p-8">
+          <div className="grid md:grid-cols-3 gap-8 text-center">
+            <div className="space-y-3">
+              <Lock className="w-12 h-12 text-red-400 mx-auto" />
+              <h3 className="text-xl font-bebas text-white">Liquidity Locked</h3>
+              <p className="text-gray-400 text-sm">LP tokens permanently burned</p>
+            </div>
+            <div className="space-y-3">
+              <PieChart className="w-12 h-12 text-red-400 mx-auto" />
+              <h3 className="text-xl font-bebas text-white">Fair Launch</h3>
+              <p className="text-gray-400 text-sm">No presale, no team allocation</p>
+            </div>
+            <div className="space-y-3">
+              <Flame className="w-12 h-12 text-red-400 mx-auto" />
+              <h3 className="text-xl font-bebas text-white">Renounced</h3>
+              <p className="text-gray-400 text-sm">Contract ownership renounced</p>
             </div>
           </div>
         </div>

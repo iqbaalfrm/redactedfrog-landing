@@ -1,83 +1,82 @@
 import React from 'react';
-import { Terminal, Shield, Zap } from 'lucide-react';
+import { Shield, Zap, Users, Eye } from 'lucide-react';
 
-const About: React.FC = () => {
+const About = () => {
+  const features = [
+    {
+      icon: Shield,
+      title: "Uncensorable",
+      description: "Built on the blockchain, beyond the reach of traditional censorship"
+    },
+    {
+      icon: Zap,
+      title: "Lightning Fast",
+      description: "Ethereum-based smart contract with optimized gas efficiency"
+    },
+    {
+      icon: Users,
+      title: "Community Driven",
+      description: "No central authority, governed entirely by the community"
+    },
+    {
+      icon: Eye,
+      title: "Transparent",
+      description: "All transactions visible on-chain, nothing to hide"
+    }
+  ];
+
   return (
-    <section className="py-20 px-4 relative">
-      <div className="absolute inset-0 cyber-grid opacity-20"></div>
-      
-      <div className="max-w-6xl mx-auto relative z-10">
+    <section id="about" className="py-20 bg-gradient-to-b from-black to-red-950">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-cyber font-bold mb-6 text-glow-red">
-            ABOUT THE <span className="text-red-500">MISSION</span>
+          <h2 className="text-5xl sm:text-6xl font-bebas text-white mb-6">
+            The <span className="text-red-400">Legend</span> Begins
           </h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-red-500 to-red-600 mx-auto mb-8"></div>
         </div>
-        
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Content */}
-          <div className="space-y-8">
-            <div className="cyber-card fade-in">
-              <p className="text-lg md:text-xl leading-relaxed text-gray-300">
-                <span className="text-red-400 font-semibold">Redacted Frog</span> is a community-driven meme coin built for frogs who know too much. 
-                On a mission to <span className="text-red-400">decentralize the truth</span>, one red pill at a time.
-              </p>
-            </div>
-            
-            <div className="grid sm:grid-cols-3 gap-6">
-              <div className="cyber-card text-center group hover:scale-105 transition-transform duration-300">
-                <Shield className="w-12 h-12 text-red-500 mx-auto mb-4 group-hover:text-red-400" />
-                <h3 className="font-cyber font-bold text-lg mb-2">SECURE</h3>
-                <p className="text-sm text-gray-400">Audited smart contracts</p>
-              </div>
-              
-              <div className="cyber-card text-center group hover:scale-105 transition-transform duration-300">
-                <Zap className="w-12 h-12 text-red-500 mx-auto mb-4 group-hover:text-red-400" />
-                <h3 className="font-cyber font-bold text-lg mb-2">FAST</h3>
-                <p className="text-sm text-gray-400">Lightning transactions</p>
-              </div>
-              
-              <div className="cyber-card text-center group hover:scale-105 transition-transform duration-300">
-                <Terminal className="w-12 h-12 text-red-500 mx-auto mb-4 group-hover:text-red-400" />
-                <h3 className="font-cyber font-bold text-lg mb-2">DECENTRALIZED</h3>
-                <p className="text-sm text-gray-400">Community governed</p>
-              </div>
-            </div>
+
+        <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+          <div className="space-y-6">
+            <p className="text-lg text-gray-300 leading-relaxed">
+              In the depths of the internet, where memes are born and legends are made, 
+              <span className="text-red-400 font-semibold"> RedactedFrog</span> emerged from the shadows. 
+              This isn't just another memecoin—it's a movement against the sanitized, corporate-controlled 
+              crypto landscape.
+            </p>
+            <p className="text-lg text-gray-300 leading-relaxed">
+              Born from the community's desire for authentic, unfiltered expression, RedactedFrog represents 
+              the rebellious spirit of the early internet. No marketing budget, no celebrity endorsements, 
+              no corporate backing—just pure, unadulterated <span className="text-red-400 font-semibold">meme magic</span>.
+            </p>
+            <p className="text-lg text-gray-300 leading-relaxed">
+              They tried to silence the frog. They tried to redact the truth. But the community remembers. 
+              The community <span className="text-red-400 font-semibold">never forgets</span>.
+            </p>
           </div>
           
-          {/* Right Content - Terminal Frog */}
-          <div className="cyber-card p-8 relative">
-            <div className="bg-black rounded-lg p-6 border border-red-500/30">
-              {/* Terminal Header */}
-              <div className="flex items-center gap-2 mb-4 pb-2 border-b border-red-500/30">
-                <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                <span className="text-sm text-gray-400 ml-2 font-mono">frog@classified:~$</span>
-              </div>
-              
-              {/* Terminal Content */}
-              <div className="space-y-2 font-mono text-sm">
-                <div className="text-green-400">$ initialize_revolution.sh</div>
-                <div className="text-gray-400">Loading classified protocols...</div>
-                <div className="text-red-400">REDACTED_FROG_TOKEN initialized</div>
-                <div className="text-gray-400">Decentralization level: MAXIMUM</div>
-                <div className="text-green-400">Status: READY TO DEPLOY</div>
-                <div className="text-red-400 pulse-red">█</div>
-              </div>
-              
-              {/* Frog Character in Terminal */}
-              <div className="mt-6 text-center">
-                <div className="inline-block relative">
-                  <div className="w-20 h-16 bg-green-400 rounded-full relative mx-auto">
-                    <div className="absolute top-1 left-2 w-3 h-3 bg-red-500 rounded-full glow-red pulse-red"></div>
-                    <div className="absolute top-1 right-2 w-3 h-3 bg-red-500 rounded-full glow-red pulse-red"></div>
-                    <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-6 h-1 bg-green-600 rounded-full"></div>
-                  </div>
-                  <div className="text-xs text-gray-500 mt-2 font-mono">FROG_AGENT_007</div>
-                </div>
+          <div className="relative">
+            <div className="bg-gradient-to-br from-red-600/20 to-red-800/20 rounded-3xl p-8 border border-red-500/30 backdrop-blur-sm">
+              <div className="text-8xl text-center mb-4">🐸</div>
+              <div className="text-center">
+                <div className="text-2xl font-bebas text-red-400 mb-2">REDACTED</div>
+                <div className="text-4xl font-bebas text-white mb-2">FROG</div>
+                <div className="text-sm text-gray-400">███████ ████ ██ ██████</div>
               </div>
             </div>
           </div>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {features.map((feature, index) => (
+            <div 
+              key={index}
+              className="bg-black/40 backdrop-blur-sm border border-red-500/30 rounded-2xl p-6 hover:bg-black/60 transition-all duration-300 hover:scale-105 group"
+            >
+              <feature.icon className="w-12 h-12 text-red-400 mb-4 group-hover:scale-110 transition-transform duration-200" />
+              <h3 className="text-xl font-bebas text-white mb-2">{feature.title}</h3>
+              <p className="text-gray-400 text-sm">{feature.description}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

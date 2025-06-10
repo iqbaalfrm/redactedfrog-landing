@@ -1,58 +1,68 @@
-import React from 'react';
-import { ArrowRight, FileText } from 'lucide-react';
-import RedactedLogo from '../assets/redacted-logo.png';
+import React, { useEffect, useState } from 'react';
+import { TrendingUp, BarChart3, ExternalLink } from 'lucide-react';
 
+const Hero = () => {
+  const [isVisible, setIsVisible] = useState(false);
 
-const Hero: React.FC = () => {
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
   return (
-    <section className="min-h-screen relative flex items-center justify-center overflow-hidden">
-      {/* Cyberpunk Background */}
-      <div className="absolute inset-0 cyber-grid opacity-30"></div>
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900 to-black"></div>
+    <section id="home" className="min-h-screen bg-gradient-to-br from-black via-red-950 to-black relative overflow-hidden flex items-center">
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/1089438/pexels-photo-1089438.jpeg')] bg-cover bg-center opacity-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/60"></div>
       
-      {/* Animated Circuit Lines */}
-      <div className="absolute top-0 left-0 w-full h-full">
-        <div className="absolute top-1/4 left-0 w-1/3 h-px bg-gradient-to-r from-transparent via-red-500 to-transparent pulse-red"></div>
-        <div className="absolute top-1/2 right-0 w-1/4 h-px bg-gradient-to-l from-transparent via-red-500 to-transparent pulse-red" style={{animationDelay: '1s'}}></div>
-        <div className="absolute bottom-1/3 left-1/4 w-1/2 h-px bg-gradient-to-r from-transparent via-red-500 to-transparent pulse-red" style={{animationDelay: '0.5s'}}></div>
-      </div>
-      
-      <div className="relative z-10 text-center px-4 max-w-6xl mx-auto">
-        {/* Frog Character */}
-       {/* Redacted Logo */}
-        <div className="mb-12 slide-in">
-          <div className="w-64 h-64 mx-auto mb-8 relative">
-            <div className="w-full h-full rounded-full bg-gradient-to-b from-gray-800 to-black border-4 border-red-500 glow-red flex items-center justify-center overflow-hidden">
-              <img
-                src={RedactedLogo}
-                alt="Redacted Frog Logo"
-                className="object-contain w-48 h-48"
-              />
+      {/* Floating Elements */}
+      <div className="absolute top-20 left-10 w-20 h-20 bg-red-500/20 rounded-full blur-xl animate-pulse"></div>
+      <div className="absolute bottom-32 right-20 w-32 h-32 bg-red-600/10 rounded-full blur-2xl animate-pulse delay-1000"></div>
+      <div className="absolute top-1/2 right-10 w-16 h-16 bg-red-400/30 rounded-full blur-lg animate-bounce delay-500"></div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <h1 className="text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-bebas text-white mb-6 tracking-wider">
+            <span className="bg-gradient-to-r from-red-400 via-red-500 to-red-600 bg-clip-text text-transparent">
+              RedactedFrog
+            </span>
+            <span className="block text-4xl sm:text-5xl lg:text-6xl mt-2">🐸</span>
+          </h1>
+          
+          <p className="text-xl sm:text-2xl lg:text-3xl text-gray-300 mb-8 max-w-4xl mx-auto font-light">
+            The meme coin <span className="text-red-400 font-semibold">they don't want you to know</span>
+          </p>
+          
+          <p className="text-lg text-gray-400 mb-12 max-w-2xl mx-auto">
+            Join the revolution. Embrace the chaos. Become part of the legend that's too dangerous to speak about.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+            <button className="group bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-200 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/30 flex items-center space-x-2">
+              <TrendingUp className="w-5 h-5 group-hover:animate-bounce" />
+              <span>Buy on Uniswap</span>
+              <ExternalLink className="w-4 h-4" />
+            </button>
+            
+            <button className="group border-2 border-red-500 text-red-400 hover:bg-red-500 hover:text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-200 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/30 flex items-center space-x-2">
+              <BarChart3 className="w-5 h-5 group-hover:animate-pulse" />
+              <span>View Chart</span>
+            </button>
+          </div>
+
+          <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-3xl mx-auto">
+            <div className="bg-black/40 backdrop-blur-sm border border-red-500/30 rounded-2xl p-6 hover:bg-black/60 transition-all duration-300 hover:scale-105">
+              <div className="text-3xl font-bebas text-red-400">100%</div>
+              <div className="text-gray-300">Community Owned</div>
+            </div>
+            <div className="bg-black/40 backdrop-blur-sm border border-red-500/30 rounded-2xl p-6 hover:bg-black/60 transition-all duration-300 hover:scale-105">
+              <div className="text-3xl font-bebas text-red-400">0%</div>
+              <div className="text-gray-300">Team Allocation</div>
+            </div>
+            <div className="bg-black/40 backdrop-blur-sm border border-red-500/30 rounded-2xl p-6 hover:bg-black/60 transition-all duration-300 hover:scale-105">
+              <div className="text-3xl font-bebas text-red-400">BURNED</div>
+              <div className="text-gray-300">LP Tokens</div>
             </div>
           </div>
-        </div>
-        {/* Title */}
-        <h1 className="text-6xl md:text-8xl font-cyber font-black mb-6 text-glow-red slide-in" style={{animationDelay: '0.2s'}}>
-          REDACTED
-          <br />
-          <span className="text-red-500">FROG</span>
-        </h1>
-        
-        {/* Tagline */}
-        <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto slide-in" style={{animationDelay: '0.4s'}}>
-          The most <span className="text-red-400 font-semibold">classified</span> meme token ever deployed.
-        </p>
-        
-        {/* Buttons */}
-        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center slide-in" style={{animationDelay: '0.6s'}}>
-          <button className="neon-button flex items-center gap-3 text-lg">
-            Buy Token
-            <ArrowRight className="w-5 h-5" />
-          </button>
-          <button className="border-2 border-red-500 text-red-400 px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover:bg-red-500 hover:text-white hover:scale-105 flex items-center gap-3 text-lg">
-            <FileText className="w-5 h-5" />
-            View Whitepaper
-          </button>
         </div>
       </div>
     </section>
