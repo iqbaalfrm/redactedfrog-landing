@@ -29,9 +29,14 @@ const Community = () => {
           
           {/* CTA Button */}
           <div className="flex justify-center">
-            <button className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-200 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/30">
+            <a
+              href="https://arena.trade/token/0x6a3ee7dbf407017e58d48b2cc9b55b180f0a3ee7"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-200 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/30"
+            >
               Buy $RFROG Now
-            </button>
+            </a>
           </div>
         </div>
       </div>
