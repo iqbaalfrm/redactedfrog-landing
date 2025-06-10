@@ -1,14 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { TrendingUp, BarChart3, ExternalLink } from 'lucide-react';
+import { ClipboardCopy, Check } from 'lucide-react';
 import logoOnly from '../assets/redacted-logoonly.png';
-
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const ca = '0x6a3ee7dbf407017e58d48b2cc9b55b180f0a3ee7';
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(ca);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500);
+  };
 
   return (
     <section id="home" className="min-h-screen bg-gradient-to-br from-black via-red-950 to-black relative overflow-hidden flex items-center">
@@ -27,33 +35,38 @@ const Hero = () => {
             <span className="bg-gradient-to-r from-red-400 via-red-500 to-red-600 bg-clip-text text-transparent">
               RedactedFrog
             </span>
-           <div className="mt-4 flex justify-center">
-            <img src={logoOnly} alt="Redacted Logo" className="h-24 sm:h-28 lg:h-32 xl:h-40 object-contain" />
-        </div>
-
+            <div className="mt-4 flex justify-center">
+              <img src={logoOnly} alt="Redacted Logo" className="h-24 sm:h-28 lg:h-32 xl:h-40 object-contain" />
+            </div>
           </h1>
-          
+
           <p className="text-xl sm:text-2xl lg:text-3xl text-gray-300 mb-8 max-w-4xl mx-auto font-light">
             The meme coin <span className="text-red-400 font-semibold">they don't want you to know</span>
           </p>
-          
+
           <p className="text-lg text-gray-400 mb-12 max-w-2xl mx-auto">
             Join the revolution. Embrace the chaos. Become part of the legend that's too dangerous to speak about.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <button className="group bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-200 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/30 flex items-center space-x-2">
-              <TrendingUp className="w-5 h-5 group-hover:animate-bounce" />
-              <span>Buy on Uniswap</span>
-              <ExternalLink className="w-4 h-4" />
-            </button>
-            
-            <button className="group border-2 border-red-500 text-red-400 hover:bg-red-500 hover:text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-200 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/30 flex items-center space-x-2">
-              <BarChart3 className="w-5 h-5 group-hover:animate-pulse" />
-              <span>View Chart</span>
-            </button>
+          {/* CA DISPLAY */}
+          <div className="flex justify-center">
+            <div className="bg-black/40 backdrop-blur-sm border border-red-500/30 px-6 py-4 rounded-full font-mono text-sm text-red-400 flex items-center space-x-3 hover:bg-black/60 transition-all duration-300">
+              <span className="truncate max-w-[240px] sm:max-w-none">
+                {ca}
+              </span>
+              <button
+                onClick={handleCopy}
+                className="text-white hover:text-red-400 transition-colors"
+                title="Copy to clipboard"
+              >
+                {copied ? (
+                  <Check className="w-4 h-4 text-green-400" />
+                ) : (
+                  <ClipboardCopy className="w-4 h-4" />
+                )}
+              </button>
+            </div>
           </div>
-
 
         </div>
       </div>
