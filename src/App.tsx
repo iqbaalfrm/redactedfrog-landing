@@ -11,6 +11,7 @@ function App() {
       <Navbar />
       <Hero />
       <About />
+      <Community />
       <Footer />
     </div>
   );
