@@ -49,20 +49,7 @@ const Hero = () => {
             </button>
           </div>
 
-          <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-3xl mx-auto">
-            <div className="bg-black/40 backdrop-blur-sm border border-red-500/30 rounded-2xl p-6 hover:bg-black/60 transition-all duration-300 hover:scale-105">
-              <div className="text-3xl font-bebas text-red-400">100%</div>
-              <div className="text-gray-300">Community Owned</div>
-            </div>
-            <div className="bg-black/40 backdrop-blur-sm border border-red-500/30 rounded-2xl p-6 hover:bg-black/60 transition-all duration-300 hover:scale-105">
-              <div className="text-3xl font-bebas text-red-400">0%</div>
-              <div className="text-gray-300">Team Allocation</div>
-            </div>
-            <div className="bg-black/40 backdrop-blur-sm border border-red-500/30 rounded-2xl p-6 hover:bg-black/60 transition-all duration-300 hover:scale-105">
-              <div className="text-3xl font-bebas text-red-400">BURNED</div>
-              <div className="text-gray-300">LP Tokens</div>
-            </div>
-          </div>
+
         </div>
       </div>
     </section>
