@@ -1,5 +1,7 @@
 import React from 'react';
 import { Shield, Zap, Users, Eye } from 'lucide-react';
+import logo from './assets/redacted-logo.png';
+
 
 const About = () => {
   const features = [
@@ -56,7 +58,8 @@ const About = () => {
           
           <div className="relative">
             <div className="bg-gradient-to-br from-red-600/20 to-red-800/20 rounded-3xl p-8 border border-red-500/30 backdrop-blur-sm">
-              <div className="text-8xl text-center mb-4">🐸</div>
+             <div className="flex justify-center mb-4">
+  <img src="/src/assets/redacted-logo.png" alt="Redacted Logo" className="h-24 w-24 object-contain" />
               <div className="text-center">
                 <div className="text-2xl font-bebas text-red-400 mb-2">REDACTED</div>
                 <div className="text-4xl font-bebas text-white mb-2">FROG</div>
@@ -64,6 +67,7 @@ const About = () => {
               </div>
             </div>
           </div>
+        </div>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
