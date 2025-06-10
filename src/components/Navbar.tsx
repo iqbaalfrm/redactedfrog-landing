@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import logoOnly from '../assets/redacted-logoonly.png';
+import avaxLogo from '../assets/avalanche-avax-logo.png'; // ✅ Import logo AVAX
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -48,6 +49,13 @@ const Navbar = () => {
             <span className="text-xl font-bold font-bebas text-white">
               RedactedFrog
             </span>
+            {/* AVAX Logo */}
+            <img
+              src={avaxLogo}
+              alt="Avalanche Logo"
+              className="h-6 w-6 object-contain ml-2"
+              title="Built on Avalanche"
+            />
           </div>
 
           {/* Desktop Navigation */}
@@ -61,9 +69,15 @@ const Navbar = () => {
                 {item.name}
               </button>
             ))}
-            <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-full font-semibold transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-red-500/25">
+            {/* ✅ Buy Now button with external link */}
+            <a
+              href="https://arena.trade/token/0x6a3ee7dbf407017e58d48b2cc9b55b180f0a3ee7"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-full font-semibold transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-red-500/25"
+            >
               Buy Now
-            </button>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -93,9 +107,15 @@ const Navbar = () => {
                 {item.name}
               </button>
             ))}
-            <button className="w-full bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-full font-semibold mt-4 transition-all duration-200">
+            {/* ✅ Buy Now button mobile */}
+            <a
+              href="https://arena.trade/token/0x6a3ee7dbf407017e58d48b2cc9b55b180f0a3ee7"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-full font-semibold mt-4 transition-all duration-200 text-center"
+            >
               Buy Now
-            </button>
+            </a>
           </div>
         )}
       </div>
