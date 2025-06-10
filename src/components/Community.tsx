@@ -1,4 +1,5 @@
 import React from 'react';
+import logoOnly from '../assets/redacted-logoonly.png';
 
 const Community = () => {
   return (
@@ -6,7 +7,9 @@ const Community = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Call to Action */}
         <div className="bg-gradient-to-r from-red-600/20 to-red-800/20 border border-red-500/30 rounded-3xl p-12 text-center">
-          <div className="text-6xl mb-6">🐸</div>
+           <div className="mt-4 flex justify-center">
+            <img src={logoOnly} alt="Redacted Logo" className="h-24 sm:h-28 lg:h-32 xl:h-40 object-contain" />
+        
           <h3 className="text-3xl sm:text-4xl font-bebas text-white mb-4">
             Ready to Join the Revolution?
           </h3>
@@ -23,6 +26,7 @@ const Community = () => {
               Join Telegram
             </button>
           </div>
+        </div>
         </div>
       </div>
     </section>
